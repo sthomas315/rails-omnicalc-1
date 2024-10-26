@@ -1,4 +1,8 @@
 class NewController < ActionController
+ 
+  def square_new
+    render({ :template => "calc_templcate/squareform" })
+  end
 
   def square
     @the_num = params.fetch("num_input").to_f
@@ -7,6 +11,9 @@ class NewController < ActionController
   end
   
 
+  def square_root_new
+    render({ :template => "calc_template/rootform" })
+  end
 
   def square_root
     @the_root= params.fetch("root_input").to_f
@@ -14,6 +21,9 @@ class NewController < ActionController
     render({:template => "calc_template/rooted"})
   end
     
+  def payment_new
+    render({ :template => "calc_template/payform" })
+  end
 
 
   def payment
@@ -28,6 +38,9 @@ class NewController < ActionController
   end
   
 
+  def random_new
+    render({ :template => "calc_template/randomform" })
+  end
 
   def random_num 
     @the_min= params.fetch("min_input").to_f
