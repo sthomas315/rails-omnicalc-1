@@ -1,0 +1,26 @@
+<form action ="/root/results">
+
+<label for ="s"> Enter a number </label>
+<input id="s" type = "text" name="root_input">
+
+
+<button> Calculate square root </button>
+
+</form>
+
+<dl>
+<dt>
+Number
+</dt>
+<dd>
+<%= @the_root %>
+
+<dt>
+Square
+</dt>
+<dd>
+<%= @root_result %>
+</dd>
+</dl>
+
+<a href="/square_root/new"> Calculate another square root </a>
