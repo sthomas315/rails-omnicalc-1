@@ -22,18 +22,19 @@ class NewController < ApplicationController
   end
     
   def payment_new
-    render({ :template => "calc_template/payform" })
+    render({:template => "calc_template/payform"})
   end
 
 
   def payment
-    @the_apr = params.fetch("apr_input").to_f.to_fs(:percentage, { :precision => 4 })
-    r = (params.fetch("apr_input").to_f)/100/12
-    @the_year = params.fetch("years_input").to_i 
-    n = params.fetch("years_input").to_i * 12
-    @the_principal = params.fetch("principal_input").to_fs(:currency)
-    pv = params.fetch("principal_input").to_f
-    @payment_result = (r*pv) / (1-(1+r)**(n*-1)).to_fs(:currency)
+    @the_apr = params.fetch("apr_input").to_f
+    r = @the_apr / 100 / 12
+    @the_year = params.fetch("years_input").to_i
+    n = @the_year * 12
+    @the_principal = params.fetch("principal_input").to_f
+    pv = @the_principal
+    @payment_result = (r * pv) / (1 - (1 + r)**(-n))
+    
     render({:template => "calc_template/paid"})
   end
   
