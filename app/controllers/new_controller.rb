@@ -1,7 +1,7 @@
 class NewController < ApplicationController
  
   def square_new
-    render({ :template => "calc_templcate/squareform" })
+    render({ :template => "calc_template/squareform" })
   end
 
   def square
@@ -27,19 +27,19 @@ class NewController < ApplicationController
 
 
   def payment
-    @the_apr = params.fetch("apr_input").to_f
-    @the_apr_unit = (params.fetch("apr_input").to_f)/100/12
+    @the_apr = params.fetch("apr_input").to_f.to_fs(:percentage, { :precision => 4 })
+    r = (params.fetch("apr_input").to_f)/100/12
     @the_year = params.fetch("years_input").to_i 
-    @the_year_unit = params.fetch("years_input").to_i * 12
-    @the_principal = params.fetch("principal_input").to_f
-    @the_principal_unit = params.fetch("principal_input").to_f
-    @payment_result = (@the_apr_unit*@the_principal_unit) / (1-(1+@the_apr_unit)**(@the_year_unit*-1)).to_f
+    n = params.fetch("years_input").to_i * 12
+    @the_principal = params.fetch("principal_input").to_fs(:currency)
+    pv = params.fetch("principal_input").to_f
+    @payment_result = (r*pv) / (1-(1+r)**(n*-1)).to_fs(:currency)
     render({:template => "calc_template/paid"})
   end
   
 
   def random_new
-    render({ :template => "calc_template/randomform" })
+    render({:template => "calc_template/randform" })
   end
 
   def random_num 
