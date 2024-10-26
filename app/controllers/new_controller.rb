@@ -1,4 +1,4 @@
-class NewController < ActionController::Base
+class NewController < ActionController
 
   def square
     @the_num = params.fetch("num_input").to_f
