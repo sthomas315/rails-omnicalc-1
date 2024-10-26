@@ -1,4 +1,4 @@
-class NewController < ActionController
+class NewController < ApplicationController
  
   def square_new
     render({ :template => "calc_templcate/squareform" })
