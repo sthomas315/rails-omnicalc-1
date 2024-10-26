@@ -36,10 +36,5 @@ class NewController < ActionController::Base
     render({:template => "calc_template/randy"})
   end
 
- 
-
-  def home
-    render({:template => "calc_template/house"})
-  end 
 
 end
